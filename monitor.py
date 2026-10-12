@@ -57,7 +57,8 @@ DEFAULT_CONFIG = {
     "ignore_keywords": ["邮费", "运费", "补差价", "定制", "专用链接", "定金", "尾款"],
     "notify": {
         "wechat_serverchan": True,          # 微信推送（Server酱）
-        "serverchan_sendkey": "",           # 填入 https://sct.ftqq.com 的 SendKey
+        "serverchan_sendkey": "",           # 主 SendKey（https://sct.ftqq.com）
+        "serverchan_sendkeys": [],          # 额外的 SendKey 列表，可推给多个微信（第二台设备）
         "desktop_toast": True,              # Windows 桌面弹窗
         "notify_sold_out": True,            # 商品售罄/下架时也提醒
         "offline_warn_after_failures": 10,  # 连续失败多少次后发“监控异常”提醒
@@ -102,10 +103,16 @@ def load_config():
         with open(CONFIG_FILE, "w", encoding="utf-8") as f:
             json.dump(cfg, f, ensure_ascii=False, indent=2)
         log("已生成默认 config.json")
-    # 云端模式：SendKey 从环境变量注入（GitHub Secrets），不写进仓库文件
-    env_key = os.environ.get("BOOK_MONITOR_SENDKEY", "").strip()
-    if env_key:
-        cfg["notify"]["serverchan_sendkey"] = env_key
+    # 云端模式：SendKey 从环境变量注入（GitHub Secrets），不写进仓库文件。
+    # 支持多个密钥 = 同时推送给多个微信（例如第二台设备的另一个微信账号）。
+    env_keys = []
+    for var in ("BOOK_MONITOR_SENDKEY", "BOOK_MONITOR_SENDKEY_2", "BOOK_MONITOR_SENDKEY_3"):
+        k = os.environ.get(var, "").strip()
+        if k:
+            env_keys.append(k)
+    if env_keys:
+        cfg["notify"]["serverchan_sendkey"] = env_keys[0]
+        cfg["notify"]["serverchan_sendkeys"] = env_keys[1:]
     return cfg
 
 
@@ -261,29 +268,49 @@ def send_toast(cfg, title, body):
         log(f"桌面弹窗发送失败: {e}")
 
 
+def get_sendkeys(cfg):
+    """汇总所有 SendKey（主密钥 + 额外密钥列表），去重"""
+    keys = []
+    k0 = (cfg["notify"].get("serverchan_sendkey") or "").strip()
+    if k0:
+        keys.append(k0)
+    for k in (cfg["notify"].get("serverchan_sendkeys") or []):
+        if k and k.strip():
+            keys.append(k.strip())
+    seen, out = set(), []
+    for k in keys:
+        if k not in seen:
+            seen.add(k)
+            out.append(k)
+    return out
+
+
 def send_serverchan(cfg, title, desp):
-    """微信推送（Server酱 sct.ftqq.com）"""
+    """微信推送（Server酱 sct.ftqq.com），支持同时推送给多个微信账号"""
     if not cfg["notify"].get("wechat_serverchan"):
         return False
-    key = (cfg["notify"].get("serverchan_sendkey") or "").strip()
-    if not key:
-        log("微信推送未配置（config.json 中 serverchan_sendkey 为空），跳过")
+    keys = get_sendkeys(cfg)
+    if not keys:
+        log("微信推送未配置（SendKey 为空），跳过")
         return False
-    try:
-        url = f"https://sctapi.ftqq.com/{key}.send"
-        data = urllib.parse.urlencode({"title": title[:32], "desp": desp}).encode("utf-8")
-        req = urllib.request.Request(url, data=data, method="POST",
-                                     headers={"Content-Type": "application/x-www-form-urlencoded"})
-        with urllib.request.urlopen(req, timeout=15) as resp:
-            result = json.loads(resp.read().decode("utf-8"))
-        if result.get("code") == 0:
-            log("微信推送成功")
-            return True
-        log(f"微信推送失败: {result}")
-        return False
-    except Exception as e:
-        log(f"微信推送异常: {e}")
-        return False
+    ok = True
+    for key in keys:
+        try:
+            url = f"https://sctapi.ftqq.com/{key}.send"
+            data = urllib.parse.urlencode({"title": title[:32], "desp": desp}).encode("utf-8")
+            req = urllib.request.Request(url, data=data, method="POST",
+                                         headers={"Content-Type": "application/x-www-form-urlencoded"})
+            with urllib.request.urlopen(req, timeout=15) as resp:
+                result = json.loads(resp.read().decode("utf-8"))
+            if result.get("code") == 0:
+                log(f"微信推送成功 ({key[:8]}...)")
+            else:
+                log(f"微信推送失败 ({key[:8]}...): {result}")
+                ok = False
+        except Exception as e:
+            log(f"微信推送异常 ({key[:8]}...): {e}")
+            ok = False
+    return ok
 
 
 def matches_ignore(cfg, title):

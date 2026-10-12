@@ -24,6 +24,7 @@ jobs:
       - name: 运行监控循环（每 60 秒检查一次）
         env:
           BOOK_MONITOR_SENDKEY: ${{ secrets.BOOK_MONITOR_SENDKEY }}
+          BOOK_MONITOR_SENDKEY_2: ${{ secrets.BOOK_MONITOR_SENDKEY_2 }}
         run: python monitor.py --loop 270
 
       - name: 保存商品快照到仓库
