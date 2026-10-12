@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="refresh" content="60">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>书店上新监控 - 当前在售</title>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: "Segoe UI", "Microsoft YaHei", sans-serif; background: #f5f6f8; color: #222; padding: 24px; }
+header { max-width: 1100px; margin: 0 auto 20px; display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 8px; }
+h1 { font-size: 22px; }
+.muted { color: #888; font-size: 13px; }
+.grid { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 16px; }
+.card { background: #fff; border-radius: 10px; overflow: hidden; box-shadow: 0 1px 4px rgba(0,0,0,.08); display: flex; flex-direction: column; }
+.card img { width: 100%; aspect-ratio: 1/1; object-fit: cover; background: #eee; }
+.noimg { width: 100%; aspect-ratio: 1/1; display: flex; align-items: center; justify-content: center; font-size: 60px; background: #fafafa; }
+.body { padding: 12px 14px 14px; display: flex; flex-direction: column; gap: 6px; flex: 1; }
+.title { font-size: 14px; line-height: 1.45; font-weight: 600; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; min-height: 2.9em; }
+.price { color: #e4393c; font-weight: 700; font-size: 15px; }
+.badge { display: inline-block; padding: 1px 8px; border-radius: 10px; font-size: 12px; }
+.badge.on { background: #e8f7ee; color: #0a8f4d; }
+.badge.off { background: #fdeaea; color: #d33; }
+.meta { color: #999; font-size: 12px; }
+.buy { display: block; margin-top: auto; text-align: center; background: #e4393c; color: #fff; padding: 8px; border-radius: 6px; text-decoration: none; font-size: 13px; }
+footer { max-width: 1100px; margin: 18px auto 0; color: #aaa; font-size: 12px; text-align: center; }
+</style>
+</head>
+<body>
+<header>
+  <h1>📚 cherryapple 书店 · 在售商品</h1>
+  <span class="muted">最后检查：2026-10-12 13:01:13 · 在售 3 件 · 每分钟自动刷新</span>
+</header>
+<div class="grid">
+  
+<div class="card">
+  <img src="https://img01.yzcdn.cn/upload_files/2021/12/06/FnInOtOmCsAyoPNO-WjnGCcvGkkg.jpg?mediaId=3349885789" alt="">
+  <div class="body">
+    <div class="title">【最后一批明信片】售完即止10.05</div>
+    <div><span class="badge on">在售</span></div>
+    <div class="price">¥24.20 ~ ¥378.00</div>
+    <div class="meta">上架：2025-12-23 09:58:59</div>
+    <div class="meta">库存：779 件 · 已售 4858 件</div>
+    <a class="buy" href="https://cherryapple.myallvalue.com/m/pages3/goods/detail/index?goodsId=12735132" target="_blank">立即抢购 →</a>
+  </div>
+</div>
+<div class="card">
+  <img src="https://i18n-img.yzcdn.cn/upload_files/2022/09/07/FhfUw002vEH-upXp1WrESc6UjdH5.jpg?width=757&amp;height=709&amp;mediaId=5244080297" alt="">
+  <div class="body">
+    <div class="title">私人订制</div>
+    <div><span class="badge on">在售</span></div>
+    <div class="price">¥10.00</div>
+    <div class="meta">上架：2023-05-23 14:41:40</div>
+    <div class="meta">库存：1073200 件 · 已售 48872 件</div>
+    <a class="buy" href="https://cherryapple.myallvalue.com/m/pages3/goods/detail/index?goodsId=2948901" target="_blank">立即抢购 →</a>
+  </div>
+</div>
+<div class="card">
+  <img src="https://i18n-img.yzcdn.cn/upload_files/2022/03/03/Ft9sZdCpOa-V88a3N5Dklvl-VAF9.jpg!100x100.jpg" alt="">
+  <div class="body">
+    <div class="title">万能拍</div>
+    <div><span class="badge on">在售</span></div>
+    <div class="price">¥1.00</div>
+    <div class="meta">上架：2022-03-04 10:23:26</div>
+    <div class="meta">库存：99901569 件 · 已售 426974 件</div>
+    <a class="buy" href="https://cherryapple.myallvalue.com/m/pages3/goods/detail/index?goodsId=1733436" target="_blank">立即抢购 →</a>
+  </div>
+</div>
+</div>
+<footer>本页面由监控脚本自动生成 · 发现新书会通过微信/桌面通知提醒</footer>
+</body>
+</html>

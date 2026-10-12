@@ -1,0 +1,45 @@
+{
+  "consecutive_failures": 0,
+  "goods": {
+    "12735132": {
+      "goods_id": "12735132",
+      "title": "【最后一批明信片】售完即止10.05",
+      "status": "saleable",
+      "status_str": "在售",
+      "price_min": 2420,
+      "price_max": 37800,
+      "quantity": 779,
+      "total_sold": 4858,
+      "up_at_ms": 1766483939993,
+      "cover": "https://img01.yzcdn.cn/upload_files/2021/12/06/FnInOtOmCsAyoPNO-WjnGCcvGkkg.jpg?mediaId=3349885789",
+      "url": "https://cherryapple.myallvalue.com/m/pages3/goods/detail/index?goodsId=12735132"
+    },
+    "2948901": {
+      "goods_id": "2948901",
+      "title": "私人订制",
+      "status": "saleable",
+      "status_str": "在售",
+      "price_min": 1000,
+      "price_max": 1000,
+      "quantity": 1073200,
+      "total_sold": 48872,
+      "up_at_ms": 1684852900083,
+      "cover": "https://i18n-img.yzcdn.cn/upload_files/2022/09/07/FhfUw002vEH-upXp1WrESc6UjdH5.jpg?width=757&height=709&mediaId=5244080297",
+      "url": "https://cherryapple.myallvalue.com/m/pages3/goods/detail/index?goodsId=2948901"
+    },
+    "1733436": {
+      "goods_id": "1733436",
+      "title": "万能拍",
+      "status": "saleable",
+      "status_str": "在售",
+      "price_min": 100,
+      "price_max": 100,
+      "quantity": 99901569,
+      "total_sold": 426974,
+      "up_at_ms": 1646389406838,
+      "cover": "https://i18n-img.yzcdn.cn/upload_files/2022/03/03/Ft9sZdCpOa-V88a3N5Dklvl-VAF9.jpg!100x100.jpg",
+      "url": "https://cherryapple.myallvalue.com/m/pages3/goods/detail/index?goodsId=1733436"
+    }
+  },
+  "last_check": "2026-10-12 13:01:13"
+}
