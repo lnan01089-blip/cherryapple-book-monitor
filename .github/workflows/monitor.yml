@@ -1,0 +1,39 @@
+name: 书店上新监控
+
+on:
+  schedule:
+    # UTC 时间每 4 小时启动一班；每班循环运行 270 轮（约 4.5 小时，每分钟检查一次）
+    # 6 班 × 4.5 小时 ≈ 27 小时/天，班次之间有重叠，即使某班延迟启动也不留空档
+    - cron: '0 0,4,8,12,16,20 * * *'
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+jobs:
+  monitor:
+    runs-on: ubuntu-latest
+    timeout-minutes: 300
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: 运行监控循环（每 60 秒检查一次）
+        env:
+          BOOK_MONITOR_SENDKEY: ${{ secrets.BOOK_MONITOR_SENDKEY }}
+        run: python monitor.py --loop 270
+
+      - name: 保存商品快照到仓库
+        if: always()
+        run: |
+          git config user.name "book-monitor-bot"
+          git config user.email "bot@users.noreply.github.com"
+          git add state.json books.html 2>/dev/null || true
+          if ! git diff --cached --quiet; then
+            git commit -m "chore: update monitor state $(date -u +%Y-%m-%dT%H:%M:%SZ)"
+            git pull --rebase --autostash origin "${GITHUB_REF_NAME}" || true
+            git push origin "HEAD:${GITHUB_REF_NAME}"
+          fi

@@ -1,0 +1,5 @@
+config.json
+last_goods.json
+monitor.log*
+.lock
+__pycache__/
