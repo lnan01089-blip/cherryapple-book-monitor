@@ -1,0 +1,20 @@
+name: 测试推送
+
+on:
+  workflow_dispatch: {}
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: 向所有微信发送测试推送
+        env:
+          BOOK_MONITOR_SENDKEY: ${{ secrets.BOOK_MONITOR_SENDKEY }}
+          BOOK_MONITOR_SENDKEY_2: ${{ secrets.BOOK_MONITOR_SENDKEY_2 }}
+        run: python monitor.py --test
