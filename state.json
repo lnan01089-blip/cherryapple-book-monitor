@@ -8,8 +8,8 @@
       "status_str": "在售",
       "price_min": 44600,
       "price_max": 44600,
-      "quantity": 4447,
-      "total_sold": 7795,
+      "quantity": 4450,
+      "total_sold": 7801,
       "up_at_ms": 1792229266009,
       "cover": "https://intl-image.yzcdn.cn/images/2026/10/07/d144da249ee668e7a2e815bccc725057.jpg?w=100",
       "url": "https://cherryapple.myallvalue.com/m/pages3/goods/detail/index?goodsId=14144658"
@@ -21,8 +21,8 @@
       "status_str": "在售",
       "price_min": 2420,
       "price_max": 37800,
-      "quantity": 747,
-      "total_sold": 4966,
+      "quantity": 748,
+      "total_sold": 4967,
       "up_at_ms": 1766483939993,
       "cover": "https://img01.yzcdn.cn/upload_files/2021/12/06/FnInOtOmCsAyoPNO-WjnGCcvGkkg.jpg?mediaId=3349885789",
       "url": "https://cherryapple.myallvalue.com/m/pages3/goods/detail/index?goodsId=12735132"
@@ -54,5 +54,5 @@
       "url": "https://cherryapple.myallvalue.com/m/pages3/goods/detail/index?goodsId=1733436"
     }
   },
-  "last_check": "2026-10-19 08:16:57"
+  "last_check": "2026-10-19 14:11:07"
 }
