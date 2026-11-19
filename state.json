@@ -9,7 +9,7 @@
       "price_min": 44600,
       "price_max": 44600,
       "quantity": 4488,
-      "total_sold": 12388,
+      "total_sold": 12389,
       "up_at_ms": 1792229266009,
       "cover": "https://intl-image.yzcdn.cn/images/2026/10/07/d144da249ee668e7a2e815bccc725057.jpg?w=100",
       "url": "https://cherryapple.myallvalue.com/m/pages3/goods/detail/index?goodsId=14144658"
@@ -22,7 +22,7 @@
       "price_min": 2420,
       "price_max": 37800,
       "quantity": 763,
-      "total_sold": 5226,
+      "total_sold": 5227,
       "up_at_ms": 1766483939993,
       "cover": "https://img01.yzcdn.cn/upload_files/2021/12/06/FnInOtOmCsAyoPNO-WjnGCcvGkkg.jpg?mediaId=3349885789",
       "url": "https://cherryapple.myallvalue.com/m/pages3/goods/detail/index?goodsId=12735132"
@@ -54,5 +54,5 @@
       "url": "https://cherryapple.myallvalue.com/m/pages3/goods/detail/index?goodsId=1733436"
     }
   },
-  "last_check": "2026-11-19 06:15:05"
+  "last_check": "2026-11-19 17:05:32"
 }
